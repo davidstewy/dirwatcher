@@ -110,9 +110,9 @@ def main():
     while not exit_flag:
         try:
             watch_directory(args)
-        except OSError as e:
-            logger.error('{} directory does not exist. '
-                         'Error: {}'.format(args.path, e))
+        except OSError:
+            logger.error('{} directory does not exist'.format(args.path))
+            time.sleep(args.interval*2)
         except Exception as e:
             logger.error('Unhandled exception: {}'.format(e))
         time.sleep(args.interval)
